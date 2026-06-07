@@ -1,0 +1,78 @@
+/* ============================================
+   CSS VARIABLES — ROSE TINT LIGHT THEME
+   ============================================ */
+:root {
+  color-scheme: light dark;
+
+  --bg-primary    : #fdf5f5;
+  --bg-secondary  : #fce8e8;
+  --bg-card       : #ffffff;
+  --text-primary  : #1a1a1a;
+  --text-secondary: #7a7a7a;
+  --accent        : #E11D48;
+  --accent-dim    : #BE123C;
+  --accent-glow   : rgba(225, 29, 72, 0.1);
+  --border        : #f0d8d8;
+  --border-light  : #e8c8c8;
+  --shadow        : rgba(225, 29, 72, 0.1);
+
+  /* Brand icon defaults (light mode) */
+  --brand-github    : #24292e;
+  --brand-twitter   : #555555;
+  --brand-threads   : #555555;
+}
+
+/* ============================================
+   DARK MODE — System preference
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary    : #0f0a0a;
+    --bg-secondary  : #1a1111;
+    --bg-card       : #221717;
+    --text-primary  : #f0e8e8;
+    --text-secondary: #9a8888;
+    --accent-glow   : rgba(225, 29, 72, 0.25);
+    --border        : #2e1c1c;
+    --border-light  : #241515;
+    --shadow        : rgba(225, 29, 72, 0.25);
+    --brand-github  : #c0c0c0;
+    --brand-twitter : #aaaaaa;
+    --brand-threads : #aaaaaa;
+  }
+}
+
+/* ============================================
+   DARK MODE — Manual toggle (overrides system)
+   ============================================ */
+[data-theme="light"] {
+  --bg-primary    : #fdf5f5;
+  --bg-secondary  : #fce8e8;
+  --bg-card       : #ffffff;
+  --text-primary  : #1a1a1a;
+  --text-secondary: #7a7a7a;
+  --accent        : #E11D48;
+  --accent-dim    : #BE123C;
+  --accent-glow   : rgba(225, 29, 72, 0.1);
+  --border        : #f0d8d8;
+  --border-light  : #e8c8c8;
+  --shadow        : rgba(225, 29, 72, 0.1);
+  --brand-github  : #24292e;
+  --brand-twitter : #555555;
+  --brand-threads : #555555;
+}
+
+[data-theme="dark"] {
+  --bg-primary    : #0f0a0a;
+  --bg-secondary  : #1a1111;
+  --bg-card       : #221717;
+  --text-primary  : #f0e8e8;
+  --text-secondary: #9a8888;
+  --accent-glow   : rgba(225, 29, 72, 0.25);
+  --border        : #2e1c1c;
+  --border-light  : #241515;
+  --shadow        : rgba(225, 29, 72, 0.25);
+  --brand-github  : #c0c0c0;
+  --brand-twitter : #aaaaaa;
+  --brand-threads : #aaaaaa;
+}

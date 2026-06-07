@@ -1,0 +1,96 @@
+{
+  "name": "Ayush Gupta · Ayush-link",
+  "short_name": "Ayush-link",
+  "description": "Transforming Ideas Into AI-Powered Experiences — Connect with Ayush Gupta across 10+ social platforms.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "theme_color": "#0f0a0a",
+  "background_color": "#0f0a0a",
+  "categories": ["portfolio", "social", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/assets/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshots/desktop.png",
+      "sizes": "1723x969",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Ayush-link desktop portfolio view"
+    },
+    {
+      "src": "/assets/screenshots/mobile.png",
+      "sizes": "538x956",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ayush-link mobile social links hub"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Connect on GitHub",
+      "short_name": "GitHub",
+      "description": "View Ayush's GitHub repositories",
+      "url": "https://github.com/AyushEduverse",
+      "icons": [
+        {
+          "src": "/assets/icons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Contact via WhatsApp",
+      "short_name": "WhatsApp",
+      "description": "Send a message on WhatsApp",
+      "url": "https://wa.me/917398244265",
+      "icons": [
+        {
+          "src": "/assets/icons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "View Resume",
+      "short_name": "Resume",
+      "description": "Download or view Ayush's resume",
+      "url": "/assets/pdf/Ayush_Resume.pdf",
+      "icons": [
+        {
+          "src": "/assets/icons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

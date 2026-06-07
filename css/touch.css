@@ -1,0 +1,103 @@
+/* ============================================
+   TOUCH GESTURE VISUAL FEEDBACK — Mobile
+   ============================================ */
+
+/* Remove 300ms tap delay on all interactive elements */
+.social-icon-btn,
+.hire-cta,
+.profile-image-wrapper,
+.typed-wrapper,
+.social-section-title {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================
+   1. SOCIAL ICONS — Touch Press Effect
+   ============================================ */
+.social-icon-btn {
+  /* Prevent text selection on double-tap */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Brand-specific touch flash — immediate icon color shift */
+.social-icon-btn[data-brand="github"]:active i { color: #24292e; }
+.social-icon-btn[data-brand="linkedin"]:active i { color: #0077B5; }
+.social-icon-btn[data-brand="portfolio"]:active i { color: #DC2626; }
+.social-icon-btn[data-brand="instagram"]:active i { color: #E4405F; }
+.social-icon-btn[data-brand="twitter"]:active i { color: #000000; }
+.social-icon-btn[data-brand="threads"]:active i { color: #000000; }
+.social-icon-btn[data-brand="snapchat"]:active i { color: #FFFC00; }
+.social-icon-btn[data-brand="resume"]:active i { color: #DC2626; }
+.social-icon-btn[data-brand="whatsapp"]:active i { color: #25D366; }
+.social-icon-btn[data-brand="email"]:active i { color: #EA4335; }
+/* Note: scale/transform handled by GSAP in touch.js */
+
+/* ============================================
+   4. TYPED WRAPPER — Touch Glow Flash
+   ============================================ */
+.typed-wrapper:active {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  transition: all 50ms ease;
+}
+
+/* ============================================
+   5. SOCIAL TITLE — Touch Scale
+   ============================================ */
+.social-section-title:active {
+  transform: scale(0.97);
+  transition: transform 50ms ease;
+  opacity: 0.7;
+}
+
+/* ============================================
+   6. RIPPLES — GSAP-injected ripple elements
+   ============================================ */
+.touch-ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.35) 0%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 5;
+}
+
+.social-icon-btn .touch-ripple {
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.25) 0%, transparent 70%);
+}
+
+.hire-cta .touch-ripple {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
+}
+
+/* ============================================
+   7. TOUCH TOOLTIP — Mobile long-press
+   ============================================ */
+.touch-tooltip-visible .tooltip {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+  transition: opacity 150ms ease, transform 150ms ease !important;
+}
+
+/* ============================================
+   8. TOUCH TRAIL — Finger movement stars
+   ============================================ */
+.touch-trail-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ============================================
+   9. REDUCED MOTION — Touch fallback
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .touch-ripple { display: none; }
+  .touch-trail-canvas { display: none; }
+}

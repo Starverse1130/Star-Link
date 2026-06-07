@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== META ===== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ayush Gupta — Full Stack Developer, UI/UX Designer. Transforming Ideas Into AI-Powered Experiences." />
+  <meta property="og:title" content="Ayush Gupta · Ayush-link" />
+  <meta property="og:description" content="Transforming Ideas Into AI-Powered Experiences" />
+  <meta property="og:image" content="assets/image/Aayush.webp" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ayush Gupta · Ayush-link" />
+  <meta name="twitter:description" content="Transforming Ideas Into AI-Powered Experiences" />
+  <meta name="twitter:image" content="assets/image/Aayush.webp" />
+  <link rel="canonical" href="https://aayush.rf.gd" />
+
+  <!-- ===== PWA META ===== -->
+  <meta name="theme-color" content="#0f0a0a" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#fdf5f5" media="(prefers-color-scheme: light)" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Ayush-link" />
+  <meta name="application-name" content="Ayush-link" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/android-chrome-192x192.png" />
+  <link rel="manifest" href="assets/icons/site.webmanifest" />
+
+  <!-- ===== FONTS ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+
+  <!-- ===== APP STYLES (feature-based CSS files) ===== -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/touch.css" />
+
+  <!-- ===== REMIX ICONS ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- ===== TITLE ===== -->
+  <title>Ayush Gupta · Ayush-link</title>
+
+</head>
+<body>
+  <!-- Skip-to-content link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- No-JS fallback message -->
+  <noscript>
+    <p>This portfolio requires JavaScript for interactive features. Please enable JavaScript in your browser settings.</p>
+  </noscript>
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" aria-label="Toggle theme — dark/light mode">
+    <i class="ri-moon-line"></i>
+  </button>
+
+  <!-- Star particles canvas (floating background) -->
+  <canvas id="star-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient red glow in background -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- ========== PAGE WRAPPER ========== -->
+  <main class="page-wrapper" id="main-content">
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-section" aria-label="About Ayush Gupta">
+
+      <!-- Profile Image with glowing ring -->
+      <div class="profile-image-wrapper" id="avatar">
+        <img
+          class="profile-image"
+          src="assets/image/Aayush.webp"
+          alt="Ayush Gupta — Full Stack Developer"
+          width="128"
+          height="128"
+          loading="eager"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="profile-image profile-image-fallback" aria-hidden="true"
+             style="display:none; background:var(--accent); color:#fff; align-items:center; justify-content:center; font-family:Poppins, sans-serif; font-weight:700; font-size:2.5rem;">
+          AG
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <!-- Name -->
+        <h1 class="name text-center mt-4" id="name">Ayush Gupta</h1>
+
+        <!-- Tagline -->
+        <p class="tagline text-center mt-2" id="tagline">
+          Transforming Ideas Into <span class="highlight">AI-Powered</span> Experiences
+        </p>
+
+        <!-- Typed.js Output -->
+        <div class="flex justify-center mt-4" id="typed-section">
+          <div class="typed-wrapper" id="typed-wrapper">
+            <span class="typed-prefix">$</span>
+            <span id="typed-output"></span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========== DIVIDER ========== -->
+    <hr class="divider" id="divider" aria-hidden="true" />
+
+    <!-- ========== SOCIAL LINKS SECTION ========== -->
+    <section class="social-section" aria-label="Social links and contact">
+
+      <p class="social-section-title" id="social-title">Connect With Me</p>
+
+      <div class="social-icons-row" id="links-container">
+
+        <!-- 1. GitHub -->
+        <a class="social-icon-btn" data-brand="github"
+           href="https://github.com/AyushEduverse"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="GitHub — AyushEduverse">
+          <span class="tooltip">GitHub</span>
+          <i class="ri-github-line"></i>
+        </a>
+
+        <!-- 2. LinkedIn -->
+        <a class="social-icon-btn" data-brand="linkedin"
+           href="https://linkedin.com/in/ayushgupta1103"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="LinkedIn — ayushgupta1103">
+          <span class="tooltip">LinkedIn</span>
+          <i class="ri-linkedin-line"></i>
+        </a>
+
+        <!-- 3. Portfolio -->
+        <a class="social-icon-btn" data-brand="portfolio"
+           href="https://aayush.rf.gd"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Portfolio — aayush.rf.gd">
+          <span class="tooltip">Portfolio</span>
+          <i class="ri-id-card-line"></i>
+        </a>
+
+        <!-- 4. Instagram -->
+        <a class="social-icon-btn" data-brand="instagram"
+           href="https://www.instagram.com/user_aayush_11"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Instagram — @user_aayush_11">
+          <span class="tooltip">Instagram</span>
+          <i class="ri-instagram-line"></i>
+        </a>
+
+        <!-- 5. Twitter / X -->
+        <a class="social-icon-btn" data-brand="twitter"
+           href="https://x.com/ayushgupta1102"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Twitter X — @ayushgupta1102">
+          <span class="tooltip">Twitter / X</span>
+          <i class="ri-twitter-x-line"></i>
+        </a>
+
+        <!-- 6. Threads -->
+        <a class="social-icon-btn" data-brand="threads"
+           href="https://www.threads.com/@user_aayush_11"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Threads — @user_aayush_11">
+          <span class="tooltip">Threads</span>
+          <i class="ri-threads-line"></i>
+        </a>
+
+        <!-- 7. Snapchat -->
+        <a class="social-icon-btn" data-brand="snapchat"
+           href="https://www.snapchat.com/add/ayushgupta1102"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Snapchat — ayushgupta1102">
+          <span class="tooltip">Snapchat</span>
+          <i class="ri-snapchat-line"></i>
+        </a>
+
+        <!-- 8. Resume PDF -->
+        <a class="social-icon-btn" data-brand="resume"
+           href="assets/pdf/Ayush_Resume.pdf"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Resume PDF — View and Download">
+          <span class="tooltip">Resume</span>
+          <i class="ri-article-line"></i>
+        </a>
+
+        <!-- 9. WhatsApp -->
+        <a class="social-icon-btn" data-brand="whatsapp" id="whatsappBtn"
+           href="https://wa.me/917398244265"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="WhatsApp — Contact Ayush">
+          <span class="tooltip">WhatsApp</span>
+          <i class="ri-whatsapp-line"></i>
+        </a>
+
+        <!-- 10. Facebook -->
+        <a class="social-icon-btn" data-brand="facebook"
+           href="https://www.facebook.com/aayushgupta.dev"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Facebook — aayushgupta.dev">
+          <span class="tooltip">Facebook</span>
+          <i class="ri-facebook-line"></i>
+        </a>
+
+
+      </div>
+
+      <!-- ========== HIRE ME CTA ========== -->
+      <div class="mt-5">
+        <a class="hire-cta"
+           href="mailto:starverse1130@gmail.com?subject=Project%20Inquiry%20%E2%80%94%20Let's%20Work%20Together"
+           target="_self"
+           aria-label="Hire Me — Let's Work Together">
+          <i class="ri-space-ship-2-line"></i>
+          <span>Let's Work Together</span>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" id="footer">
+      &copy; 2026 <span class="brand">Ayush Gupta</span>
+      <span class="star">&#10022;</span>
+      Built Under <span class="brand">Starverse</span>
+    </footer>
+
+  </main>
+
+  <!-- ============================================
+       CDN SCRIPTS
+       ============================================ -->
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <!-- ============================================
+       APP JAVASCRIPT (feature-based JS files)
+       Order matters: modules first, then init
+       ============================================ -->
+  <script src="js/theme.js"></script>
+  <script src="js/email.js"></script>
+  <script src="js/whatsapp.js"></script>
+  <script src="js/gsap-entrance.js"></script>
+  <script src="js/typed.js"></script>
+  <script src="js/stars.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/touch.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+</html>
