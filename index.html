@@ -5,12 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Ayush Gupta — Full Stack Developer, UI/UX Designer. Transforming Ideas Into AI-Powered Experiences." />
-  <meta property="og:title" content="Ayush Gupta · Ayush-link" />
+  <meta property="og:title" content="Ayush Gupta · StarLink" />
   <meta property="og:description" content="Transforming Ideas Into AI-Powered Experiences" />
   <meta property="og:image" content="assets/image/Aayush.webp" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Ayush Gupta · Ayush-link" />
+  <meta name="twitter:title" content="Ayush Gupta · StarLink" />
   <meta name="twitter:description" content="Transforming Ideas Into AI-Powered Experiences" />
   <meta name="twitter:image" content="assets/image/Aayush.webp" />
   <link rel="canonical" href="https://aayush.rf.gd" />
@@ -20,9 +20,17 @@
   <meta name="theme-color" content="#fdf5f5" media="(prefers-color-scheme: light)" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Ayush-link" />
-  <meta name="application-name" content="Ayush-link" />
+  <meta name="apple-mobile-web-app-title" content="StarLink" />
+  <meta name="application-name" content="StarLink" />
   <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- ===== RESOURCE HINTS ===== -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
   <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
@@ -36,20 +44,168 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 
-  <!-- ===== APP STYLES (feature-based CSS files) ===== -->
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
+  <!-- ===== CRITICAL CSS INLINED (variables + base — no extra HTTP request) ===== -->
+  <style>
+    /* CSS Variables — Rose Tint Light/Dark Theme */
+    :root {
+      color-scheme: light dark;
+      --bg-primary    : #fdf5f5;
+      --bg-secondary  : #fce8e8;
+      --bg-card       : #ffffff;
+      --text-primary  : #1a1a1a;
+      --text-secondary: #6b5f5f;
+      --accent        : #E11D48;
+      --accent-dim    : #BE123C;
+      --accent-glow   : rgba(225, 29, 72, 0.1);
+      --border        : #f0d8d8;
+      --border-light  : #e8c8c8;
+      --shadow        : rgba(225, 29, 72, 0.1);      --brand-github    : #24292e;
+      --brand-twitter   : #555555;
+      --brand-threads   : #555555;
+      --toast-bg       : rgba(250, 235, 235, 0.88);
+      --toast-text     : #4a2828;
+      --toast-border   : rgba(225, 29, 72, 0.08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary    : #0f0a0a;
+        --bg-secondary  : #1a1111;
+        --bg-card       : #221717;
+        --text-primary  : #f0e8e8;
+        --text-secondary: #b8a0a0;
+        --accent-glow   : rgba(225, 29, 72, 0.25);
+        --border        : #2e1c1c;
+        --border-light  : #241515;
+        --shadow        : rgba(225, 29, 72, 0.25);
+        --brand-github  : #c0c0c0;
+        --brand-twitter : #aaaaaa;
+        --brand-threads : #aaaaaa;
+        --toast-bg       : rgba(10, 6, 6, 0.88);
+        --toast-text     : #f0e8e8;
+        --toast-border   : rgba(225, 29, 72, 0.2);
+      }
+    }
+    [data-theme="light"] {
+      --bg-primary    : #fdf5f5;
+      --bg-secondary  : #fce8e8;
+      --bg-card       : #ffffff;
+      --text-primary  : #1a1a1a;
+      --text-secondary: #6b5f5f;
+      --accent        : #E11D48;
+      --accent-dim    : #BE123C;
+      --accent-glow   : rgba(225, 29, 72, 0.1);
+      --border        : #f0d8d8;
+      --border-light  : #e8c8c8;
+      --shadow        : rgba(225, 29, 72, 0.1);
+      --brand-github  : #24292e;
+      --brand-twitter : #555555;
+      --brand-threads : #555555;
+      --toast-bg       : rgba(250, 235, 235, 0.88);
+      --toast-text     : #4a2828;
+      --toast-border   : rgba(225, 29, 72, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary    : #0f0a0a;
+      --bg-secondary  : #1a1111;
+      --bg-card       : #221717;
+      --text-primary  : #f0e8e8;
+      --text-secondary: #b8a0a0;
+      --accent-glow   : rgba(225, 29, 72, 0.25);
+      --border        : #2e1c1c;
+      --border-light  : #241515;
+      --shadow        : rgba(225, 29, 72, 0.25);
+      --brand-github  : #c0c0c0;
+      --brand-twitter : #aaaaaa;
+      --brand-threads : #aaaaaa;
+      --toast-bg       : rgba(10, 6, 6, 0.88);
+      --toast-text     : #f0e8e8;
+      --toast-border   : rgba(225, 29, 72, 0.2);
+    }
+
+    /* Base Styles — Reset & Global */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      min-height: 100dvh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    ::selection { background: var(--accent); color: #ffffff; }
+    .ambient-glow {
+      position: fixed; top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    #star-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .page-wrapper {
+      max-width: 420px; width: 100%; min-height: 100dvh;
+      margin: 0 auto; padding: 40px 20px 24px;
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
+    }
+    .skip-link {
+      position: fixed; top: -100%; left: 16px;
+      padding: 10px 20px; background: var(--accent); color: #ffffff;
+      font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600;
+      border-radius: 0 0 10px 10px; z-index: 9999;
+      text-decoration: none; transition: top 250ms ease;
+    }
+    .skip-link:focus { top: 0; outline: 2px solid #ffffff; outline-offset: 2px; }
+    noscript {
+      display: block; padding: 12px 16px; background: var(--accent);
+      color: #ffffff; font-family: 'DM Sans', sans-serif;
+      font-size: 0.8125rem; font-weight: 500; text-align: center;
+    }
+    .text-center { text-align: center; }
+    .flex { display: flex; }
+    .justify-center { justify-content: center; }
+    .mt-2 { margin-top: 8px; }
+    .mt-4 { margin-top: 16px; }
+    .mt-6 { margin-top: 24px; }
+  </style>
+
+  <!-- ===== REMAINING APP STYLES ===== -->
   <link rel="stylesheet" href="css/hero.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/touch.css" />
 
+  <!-- ===== PRELOAD CRITICAL RESOURCES ===== -->
+  <link rel="preload" href="assets/image/Aayush.webp" as="image" fetchpriority="high" />
+
   <!-- ===== REMIX ICONS ===== -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
 
   <!-- ===== TITLE ===== -->
-  <title>Ayush Gupta · Ayush-link</title>
+  <title>Ayush Gupta · StarLink</title>
 
 </head>
 <body>
@@ -87,6 +243,8 @@
           width="128"
           height="128"
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
         <div class="profile-image profile-image-fallback" aria-hidden="true"

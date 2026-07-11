@@ -49,7 +49,7 @@
     justify-content: flex-start;
   }
 
-  /* Avatar column */
+  /* Avatar column — Square on desktop */
   .profile-image-wrapper {
     width: 180px;
     height: 180px;
@@ -58,13 +58,36 @@
   }
 
   .profile-image-wrapper::before {
-    mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 3px));
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 3px));
+    /* Ring BEHIND image — 3px extends outside wrapper */
+    /* Image covers center (same border-radius), only outer ring shows */
+    inset: -3px;
+    border-radius: 12px;
+    background: conic-gradient(
+      from var(--gradient-angle, 0deg),
+      #E11D48, #F59E0B, #EC4899, #E11D48, #8B5CF6, #F59E0B, #E11D48
+    );
+    animation: spin-gradient 3.5s linear infinite;
+    transform: none;
+    mask: none;
+    -webkit-mask: none;
+  }
+
+  /* Hover: speed up colors, ring expands slightly outward */
+  .profile-image-wrapper:hover::before {
+    animation-duration: 1.5s;
+    filter: brightness(1.3) saturate(1.2);
+    inset: -5px;
+    transform: none;
+  }
+
+  .profile-image-wrapper::after {
+    border-radius: 12px;
   }
 
   .profile-image {
     width: 180px;
     height: 180px;
+    border-radius: 12px;
   }
 
   /* Content column */
@@ -154,13 +177,35 @@
   }
 
   .profile-image-wrapper::before {
-    mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 3.5px));
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 3.5px));
+    /* Ring BEHIND image — 4px extends outside wrapper */
+    inset: -4px;
+    border-radius: 14px;
+    background: conic-gradient(
+      from var(--gradient-angle, 0deg),
+      #E11D48, #F59E0B, #EC4899, #E11D48, #8B5CF6, #F59E0B, #E11D48
+    );
+    animation: spin-gradient 3.5s linear infinite;
+    transform: none;
+    mask: none;
+    -webkit-mask: none;
+  }
+
+  /* Hover: speed up colors, ring expands slightly outward */
+  .profile-image-wrapper:hover::before {
+    animation-duration: 1.5s;
+    filter: brightness(1.3) saturate(1.2);
+    inset: -5px;
+    transform: none;
+  }
+
+  .profile-image-wrapper::after {
+    border-radius: 14px;
   }
 
   .profile-image {
     width: 200px;
     height: 200px;
+    border-radius: 14px;
   }
 
   .name {
@@ -272,6 +317,7 @@
   }
   .profile-image-wrapper::before {
     animation: none;
+    opacity: 0.55;
   }
   .profile-image-wrapper::after {
     animation: none;

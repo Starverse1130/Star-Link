@@ -1,5 +1,5 @@
 /* ============================================
-   FLOATING STAR PARTICLES — Ayush-link
+   FLOATING STAR PARTICLES — StarLink
    ============================================ */
 const StarsController = {
   canvas: null,

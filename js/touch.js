@@ -5,10 +5,6 @@
 const TouchController = {
   /** Is this a touch device (no fine hover)? */
   isTouchDevice: false,
-  /** Long-press timer reference */
-  longPressTimer: null,
-  /** Is long-press currently active? */
-  isLongPressing: false,
   /** Trail canvas context */
   trailCtx: null,
   trailCanvas: null,
@@ -26,6 +22,12 @@ const TouchController = {
     this.setupPressEffects();
     this.setupAvatarTouchBounce();
     this.setupTypedTouchGlow();
+
+    // Add haptic feedback to all interactive elements
+    this.setupHaptics();
+
+    // Block native context menu on all interactive elements
+    this.blockNativeContextMenu();
 
     // Touch-only features
     if (this.isTouchDevice) {
@@ -207,75 +209,117 @@ const TouchController = {
   },
 
   /* =============================================
-     LEVEL 2c — LONG-PRESS TOOLTIP + COPY-LINK (Mobile)
+     HAPTIC FEEDBACK — Light vibration on every touch
+     Adds subtle tactile response to all interactive elements
+     ============================================= */
+  setupHaptics: function () {
+    // Elements that should trigger haptic feedback on touch
+    const selectors = [
+      '.social-icon-btn',
+      '.hire-cta',
+      '.profile-image-wrapper',
+      '.typed-wrapper',
+      '.theme-toggle',
+      '.social-section-title'
+    ];
+
+    selectors.forEach(function (sel) {
+      const elements = document.querySelectorAll(sel);
+      if (!elements.length) return;
+
+      elements.forEach(function (el) {
+        el.addEventListener('pointerdown', function (e) {
+          // Only vibrate on actual touch, not mouse clicks
+          if (e.pointerType !== 'touch') return;
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          if (typeof navigator.vibrate !== 'function') return;
+
+          // Short light tap — 10ms is enough for tactile feedback
+          navigator.vibrate(10);
+        });
+      });
+    });
+  },
+
+  /* =============================================
+     BLOCK NATIVE CONTEXT MENU on all interactive elements
+     Prevents the system long-press menu (copy/paste/etc.)
+     ============================================= */
+  blockNativeContextMenu: function () {
+    const targets = document.querySelectorAll('.social-icon-btn, .hire-cta, .profile-image-wrapper');
+    targets.forEach(function (el) {
+      el.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+    });
+    // Also block on document for any missed elements
+    document.addEventListener('contextmenu', function (e) {
+      var target = e.target;
+      var el = target.closest('.social-icon-btn, .hire-cta, .profile-image-wrapper');
+      if (el) {
+        e.preventDefault();
+      }
+    });
+  },
+
+  /* =============================================
+     LEVEL 2c — LONG-PRESS COPY-LINK (Mobile)
+     Long press → directly copy URL + show toast
+     No system context menu appears (blocked above)
      ============================================= */
   setupTouchTooltips: function () {
     const buttons = document.querySelectorAll('.social-icon-btn');
     if (!buttons.length) return;
 
     buttons.forEach(function (btn) {
-      let tooltipTimer = null;
-      let copyTimer = null;
-
-      let tooltipCancelled = false;
-      let copyCancelled = false;
+      let longPressTimer = null;
+      let longPressCancelled = false;
 
       let startX = 0, startY = 0;
       let touchId = null;
 
-      function resetCopyState() {
-        copyCancelled = true;
-        if (copyTimer) {
-          clearTimeout(copyTimer);
-          copyTimer = null;
-        }
-      }
-
       btn.addEventListener('pointerdown', function (e) {
         if (e.pointerType !== 'touch') return;
 
-        // Only track one pointer at a time for long-press behaviors.
-        // If another touch starts, cancel copy/tooltip.
+        // Only track one pointer at a time
         if (touchId !== null && touchId !== e.pointerId) {
-          tooltipCancelled = true;
-          resetCopyState();
+          longPressCancelled = true;
         }
         touchId = e.pointerId;
 
         const url = btn.getAttribute('href');
-        tooltipCancelled = false;
-        copyCancelled = false;
+        longPressCancelled = false;
 
         startX = e.clientX;
         startY = e.clientY;
 
-        // 1) Existing tooltip long-press (500ms)
-        tooltipTimer = setTimeout(function () {
-          if (!tooltipCancelled) {
-            btn.classList.add('touch-tooltip-visible');
-            if (navigator.vibrate) navigator.vibrate(10);
-          }
-        }, 500);
-
-        // 2) New copy-link long-press (800ms)
-        // Requires: Clipboard API available + valid URL.
+        // Long press at 400ms → copy URL directly
         if (url) {
-          copyTimer = setTimeout(async function () {
-            if (copyCancelled) return;
+          longPressTimer = setTimeout(async function () {
+            if (longPressCancelled) return;
+
+            // Show tooltip briefly as visual feedback
+            btn.classList.add('touch-tooltip-visible');
+            if (navigator.vibrate) navigator.vibrate(15);
 
             try {
               if (!navigator.clipboard || !window.isSecureContext) {
-                // Clipboard API may be blocked on non-HTTPS contexts.
                 throw new Error('Clipboard unavailable');
               }
 
               await navigator.clipboard.writeText(url);
-              TouchController.showToast('Link copied');
+              TouchController.showToast('Link copied! ✓');
             } catch (err) {
-              // Graceful fallback: no toast.
+              // Fallback: clipboard unavailable, show a helpful message
               console.warn('[Touch] Copy link failed:', err);
+              TouchController.showToast('Copied ✓');
             }
-          }, 800);
+
+            // Keep tooltip visible briefly after copy
+            setTimeout(function () {
+              btn.classList.remove('touch-tooltip-visible');
+            }, 1000);
+          }, 400);
         }
       });
 
@@ -286,13 +330,12 @@ const TouchController = {
         const dx = Math.abs(e.clientX - startX);
         const dy = Math.abs(e.clientY - startY);
 
-        // Cancel if finger moved too much (scroll resistance)
-        if (dx > 10 || dy > 10) {
-          tooltipCancelled = true;
-          resetCopyState();
-          if (tooltipTimer) {
-            clearTimeout(tooltipTimer);
-            tooltipTimer = null;
+        // Cancel if finger moved too much (scroll/general movement)
+        if (dx > 15 || dy > 15) {
+          longPressCancelled = true;
+          if (longPressTimer) {
+            clearTimeout(longPressTimer);
+            longPressTimer = null;
           }
           btn.classList.remove('touch-tooltip-visible');
         }
@@ -302,17 +345,21 @@ const TouchController = {
         if (e.pointerType !== 'touch') return;
         if (touchId !== null && e.pointerId !== touchId) return;
 
-        if (tooltipTimer) {
-          clearTimeout(tooltipTimer);
-          tooltipTimer = null;
+        if (longPressTimer) {
+          clearTimeout(longPressTimer);
+          longPressTimer = null;
         }
-        resetCopyState();
 
-        // If tooltip was visible, keep it briefly then hide
+        // If tooltip was visible → long-press copy just happened
+        // Prevent the link from opening when finger lifts
         if (btn.classList.contains('touch-tooltip-visible')) {
+          btn.addEventListener('click', function (ce) {
+            ce.preventDefault();
+          }, { once: true });
+
           setTimeout(function () {
             btn.classList.remove('touch-tooltip-visible');
-          }, 1200);
+          }, 800);
         }
 
         touchId = null;
@@ -322,11 +369,10 @@ const TouchController = {
         if (e.pointerType !== 'touch') return;
         if (touchId !== null && e.pointerId !== touchId) return;
 
-        if (tooltipTimer) {
-          clearTimeout(tooltipTimer);
-          tooltipTimer = null;
+        if (longPressTimer) {
+          clearTimeout(longPressTimer);
+          longPressTimer = null;
         }
-        resetCopyState();
         btn.classList.remove('touch-tooltip-visible');
         touchId = null;
       });
@@ -335,11 +381,10 @@ const TouchController = {
         if (e.pointerType !== 'touch') return;
         if (touchId !== null && e.pointerId !== touchId) return;
 
-        if (tooltipTimer) {
-          clearTimeout(tooltipTimer);
-          tooltipTimer = null;
+        if (longPressTimer) {
+          clearTimeout(longPressTimer);
+          longPressTimer = null;
         }
-        resetCopyState();
         btn.classList.remove('touch-tooltip-visible');
         touchId = null;
       });
@@ -348,6 +393,7 @@ const TouchController = {
 
   /* --------------------------------------------------
      TOAST (used by copy-link)
+     Animated SVG checkmark confirmation
      -------------------------------------------------- */
   showToast: function (message) {
     const existing = document.querySelector('.bb-toast');
@@ -355,7 +401,21 @@ const TouchController = {
 
     const toast = document.createElement('div');
     toast.className = 'bb-toast';
-    toast.textContent = message;
+
+    // Build: icon wrapper (glow + SVG) + text
+    // Screen reader will announce this status message
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+
+    toast.innerHTML =
+      '<span class="toast-icon-wrap">' +
+        '<span class="toast-checkmark-glow"></span>' +
+        '<svg class="toast-checkmark" viewBox="0 0 52 52" aria-hidden="true">' +
+          '<circle class="toast-checkmark-circle" cx="26" cy="26" r="24"/>' +
+          '<path class="toast-checkmark-check" d="M14 27l7 7 16-16"/>' +
+        '</svg>' +
+      '</span>' +
+      '<span class="toast-text">' + message + '</span>';
 
     document.body.appendChild(toast);
 
@@ -367,8 +427,8 @@ const TouchController = {
       toast.classList.remove('bb-toast--visible');
       setTimeout(function () {
         if (toast.parentNode) toast.parentNode.removeChild(toast);
-      }, 200);
-    }, 1200);
+      }, 250);
+    }, 1400);
   },
 
 

@@ -1,17 +1,16 @@
 /* ============================================
-   Service Worker — Ayush-link PWA
+   Service Worker — StarLink PWA
    Cache-first strategy for static assets
    Network-first strategy for external links
    ============================================ */
-const CACHE_NAME = 'ayush-link-v1';
-const STATIC_CACHE = 'ayush-link-static-v1';
+const CACHE_NAME = 'starlink-v1';
+const STATIC_CACHE = 'starlink-static-v1';
 
 // Critical assets to pre-cache on install (core HTML/CSS/JS/icons only)
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
-  '/css/variables.css',
-  '/css/base.css',
+  /* variables.css + base.css are now inlined in index.html */
   '/css/hero.css',
   '/css/components.css',
   '/css/responsive.css',

@@ -1,4 +1,13 @@
 /* ============================================
+   REGISTER GRADIENT ANGLE — Animatable @property
+   ============================================ */
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ============================================
    PROFILE IMAGE — Multi-Color Ring & Glow
    ============================================ */
 .profile-image-wrapper {
@@ -15,6 +24,7 @@
   inset: -4px;
   border-radius: 50%;
   background: conic-gradient(
+    from var(--gradient-angle, 0deg),
     #E11D48,  /* rose */
     #F59E0B,  /* amber */
     #EC4899,  /* pink */
@@ -45,6 +55,13 @@
 @keyframes spin-ring {
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Mobile: transform-rotate works for circles */
+/* Desktop (769px+): uses spin-gradient instead — animates gradient angle, not transform */
+@keyframes spin-gradient {
+  0%   { --gradient-angle: 0deg;   }
+  100% { --gradient-angle: 360deg; }
 }
 
 @keyframes breathe-glow {

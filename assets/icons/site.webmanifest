@@ -1,6 +1,6 @@
 {
-  "name": "Ayush Gupta · Ayush-link",
-  "short_name": "Ayush-link",
+  "name": "Ayush Gupta · StarLink",
+  "short_name": "StarLink",
   "description": "Transforming Ideas Into AI-Powered Experiences — Connect with Ayush Gupta across 10+ social platforms.",
   "start_url": "/",
   "scope": "/",
@@ -45,41 +45,17 @@
       "sizes": "1723x969",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Ayush-link desktop portfolio view"
+      "label": "StarLink desktop portfolio view"
     },
     {
       "src": "/assets/screenshots/mobile.png",
       "sizes": "538x956",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Ayush-link mobile social links hub"
+      "label": "StarLink mobile social links hub"
     }
   ],
   "shortcuts": [
-    {
-      "name": "Connect on GitHub",
-      "short_name": "GitHub",
-      "description": "View Ayush's GitHub repositories",
-      "url": "https://github.com/AyushEduverse",
-      "icons": [
-        {
-          "src": "/assets/icons/android-chrome-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
-    },
-    {
-      "name": "Contact via WhatsApp",
-      "short_name": "WhatsApp",
-      "description": "Send a message on WhatsApp",
-      "url": "https://wa.me/917398244265",
-      "icons": [
-        {
-          "src": "/assets/icons/android-chrome-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
-    },
     {
       "name": "View Resume",
       "short_name": "Resume",

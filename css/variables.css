@@ -20,6 +20,11 @@
   --brand-github    : #24292e;
   --brand-twitter   : #555555;
   --brand-threads   : #555555;
+
+  /* Toast notification — light mode */
+  --toast-bg       : rgba(250, 235, 235, 0.88);
+  --toast-text     : #4a2828;
+  --toast-border   : rgba(225, 29, 72, 0.08);
 }
 
 /* ============================================
@@ -39,6 +44,10 @@
     --brand-github  : #c0c0c0;
     --brand-twitter : #aaaaaa;
     --brand-threads : #aaaaaa;
+
+    --toast-bg       : rgba(10, 6, 6, 0.88);
+    --toast-text     : #f0e8e8;
+    --toast-border   : rgba(225, 29, 72, 0.2);
   }
 }
 
@@ -60,6 +69,10 @@
   --brand-github  : #24292e;
   --brand-twitter : #555555;
   --brand-threads : #555555;
+
+  --toast-bg       : rgba(250, 235, 235, 0.88);
+  --toast-text     : #4a2828;
+  --toast-border   : rgba(225, 29, 72, 0.08);
 }
 
 [data-theme="dark"] {
@@ -75,4 +88,8 @@
   --brand-github  : #c0c0c0;
   --brand-twitter : #aaaaaa;
   --brand-threads : #aaaaaa;
+
+  --toast-bg       : rgba(10, 6, 6, 0.88);
+  --toast-text     : #f0e8e8;
+  --toast-border   : rgba(225, 29, 72, 0.2);
 }

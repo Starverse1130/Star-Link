@@ -70,8 +70,23 @@ const EmailController = {
       // Animate progress bar — fallback if GSAP not available
       const openMail = function () {
         progress.remove();
-        cta.classList.remove('is-loading');
-        cta.style.pointerEvents = '';
+
+        // Change button text immediately — user ko pata chalega email client open ho rha hai
+        const originalHTML = cta.innerHTML;
+        cta.innerHTML = '<i class="ri-mail-open-line"></i><span>Opening Email...</span>';
+        cta.classList.add('is-loading');
+
+        // Keep pointer locked for 5s to prevent double-click
+        cta.style.pointerEvents = 'none';
+
+        // Restore button after 5 seconds (email may take time to appear)
+        setTimeout(function () {
+          cta.classList.remove('is-loading');
+          cta.style.pointerEvents = '';
+          cta.innerHTML = originalHTML;
+        }, 5000);
+
+        // Fire mailto immediately
         window.location.href = mailtoLink;
       };
 
