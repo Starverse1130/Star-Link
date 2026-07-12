@@ -1,0 +1,355 @@
+/* ============================================
+   SPLASH SCREEN STYLES
+   ============================================ */
+
+/* ─── Splash scoped CSS variables ─── */
+.s-orbit-wrap, .s-loader, .s-skip, .corner-bracket,
+.grid-bg, .blob, .scanline, #splash, #s-exit, #c {
+  --s-bg      : #0a0608;
+  --s-accent  : #E11D48;
+  --s-accent2 : #8B5CF6;
+  --s-accent3 : #F59E0B;
+  --s-dim     : #BE123C;
+  --s-glow    : rgba(225, 29, 72, 0.35);
+  --s-border  : #2a1519;
+  --s-t2      : #a08888;
+}
+
+@property --sa { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+
+/* ─── Splash BG Layers ─── */
+.grid-bg {
+  position: fixed; inset: 0; z-index: 9990;
+  background-image:
+    linear-gradient(rgba(225, 29, 72, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 29, 72, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.6;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+  pointer-events: none;
+}
+
+#c {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 9991;
+}
+
+.blob {
+  position: fixed; border-radius: 50%;
+  pointer-events: none; z-index: 9992;
+  filter: blur(80px);
+}
+.blob-1 {
+  width: 500px; height: 500px;
+  top: -180px; left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, transparent 70%);
+  animation: blob-breathe 6s ease-in-out infinite;
+}
+.blob-2 {
+  width: 350px; height: 350px;
+  bottom: -120px; right: -100px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+  animation: blob-breathe 8s ease-in-out infinite reverse;
+}
+.blob-3 {
+  width: 250px; height: 250px;
+  top: 40%; left: -120px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+  animation: blob-breathe 10s ease-in-out infinite 2s;
+}
+
+@keyframes blob-breathe {
+  0%, 100% { transform: var(--stx, translateX(-50%)) scale(1); opacity: 0.6; }
+  50%      { transform: var(--stx, translateX(-50%)) scale(1.25); opacity: 1; }
+}
+.blob-2 { --stx: translateX(0); }
+.blob-3 { --stx: translateX(0); }
+
+.scanline {
+  position: fixed; inset: 0; z-index: 9993;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0, 0, 0, 0.06) 3px, rgba(0, 0, 0, 0.06) 4px
+  );
+  opacity: 0.4;
+}
+
+/* ─── Splash Corner Brackets ─── */
+.corner-bracket {
+  position: fixed; z-index: 9994;
+  width: 40px; height: 40px;
+  pointer-events: none;
+  opacity: 0;
+}
+.corner-bracket::before,
+.corner-bracket::after {
+  content: '';
+  position: absolute;
+  background: var(--s-accent);
+  opacity: 0.3;
+}
+.corner-bracket--tl { top: 18px; left: 18px; }
+.corner-bracket--tl::before { top: 0; left: 0; width: 20px; height: 1.5px; }
+.corner-bracket--tl::after { top: 0; left: 0; width: 1.5px; height: 20px; }
+.corner-bracket--tr { top: 18px; right: 18px; }
+.corner-bracket--tr::before { top: 0; right: 0; width: 20px; height: 1.5px; }
+.corner-bracket--tr::after { top: 0; right: 0; width: 1.5px; height: 20px; }
+.corner-bracket--bl { bottom: 18px; left: 18px; }
+.corner-bracket--bl::before { bottom: 0; left: 0; width: 20px; height: 1.5px; }
+.corner-bracket--bl::after { bottom: 0; left: 0; width: 1.5px; height: 20px; }
+.corner-bracket--br { bottom: 18px; right: 18px; }
+.corner-bracket--br::before { bottom: 0; right: 0; width: 20px; height: 1.5px; }
+.corner-bracket--br::after { bottom: 0; right: 0; width: 1.5px; height: 20px; }
+
+/* ─── Splash Container ─── */
+#splash {
+  position: fixed; inset: 0; z-index: 9995;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+@keyframes dot-live {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.35; transform: scale(0.6); }
+}
+
+/* ─── Orbit + Avatar ─── */
+.s-orbit-wrap {
+  position: relative;
+  width: 200px; height: 200px;
+  margin-bottom: 28px;
+  opacity: 0;
+}
+.s-orbit-1 {
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  border: 1px dashed rgba(225, 29, 72, 0.2);
+  animation: spin-fwd 10s linear infinite;
+}
+.s-orbit-1::before {
+  content: '';
+  position: absolute;
+  top: -4px; left: 50%;
+  transform: translateX(-50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--s-accent);
+  box-shadow: 0 0 16px var(--s-accent), 0 0 32px var(--s-glow);
+}
+.s-orbit-2 {
+  position: absolute;
+  inset: -52px;
+  border-radius: 50%;
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  animation: spin-rev 18s linear infinite;
+}
+.s-orbit-2::before {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 50%;
+  transform: translateX(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--s-accent2);
+  box-shadow: 0 0 12px var(--s-accent2);
+}
+.s-orbit-3 {
+  position: absolute;
+  inset: -76px;
+  border-radius: 50%;
+  border: 1px dotted rgba(245, 158, 11, 0.1);
+  animation: spin-fwd 24s linear infinite;
+}
+.s-orbit-3::before {
+  content: '';
+  position: absolute;
+  top: -3px; right: 40%;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--s-accent3);
+  box-shadow: 0 0 10px var(--s-accent3);
+}
+@keyframes spin-fwd { to { transform: rotate(360deg); } }
+@keyframes spin-rev { to { transform: rotate(-360deg); } }
+
+.s-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from var(--sa, 0deg),
+    #E11D48, #F59E0B, #EC4899, #E11D48, #8B5CF6, #F59E0B, #E11D48
+  );
+  animation: ring-spin 4s linear infinite;
+  mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 2px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 2px));
+}
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+
+.s-avatar-glow {
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.12) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
+  filter: blur(24px);
+  animation: breathe 3.5s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.9; transform: scale(1.18); }
+}
+
+.s-avatar {
+  position: relative; z-index: 1;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--s-bg);
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.s-avatar:hover { transform: scale(1.06); }
+
+/* ─── Splash Loader ─── */
+.s-loader {
+  position: fixed;
+  top: 78%; left: 0; right: 0;
+  z-index: 9996;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+}
+.s-loader-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--s-t2);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 10px;
+}
+.s-loader-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--s-accent);
+  box-shadow: 0 0 10px var(--s-accent);
+  animation: dot-live 1.2s ease-in-out infinite;
+}
+.s-loader-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--s-accent);
+  width: 32px;
+  text-align: right;
+  display: inline-block;
+}
+.s-track {
+  width: min(300px, 75vw);
+  height: 2px;
+  background: var(--s-border);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.s-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--s-dim), var(--s-accent), #f43f5e, var(--s-accent), var(--s-dim));
+  background-size: 200% 100%;
+  border-radius: 2px;
+  box-shadow: 0 0 12px var(--s-glow);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: bar-shimmer 1.8s linear infinite;
+}
+@keyframes bar-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Skip Button — Dark Glass Style ─── */
+.s-skip {
+  position: fixed;
+  top: 18px; right: 18px;
+  z-index: 9997;
+  opacity: 0;
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border: 1.5px solid rgba(232, 200, 200, 0.08);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--s-bg) 80%, transparent);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  color: rgba(160, 136, 136, 0.6);
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              border-color 250ms ease,
+              color 250ms ease,
+              box-shadow 250ms ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.s-skip i {
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 250ms ease;
+}
+.s-skip:hover {
+  border-color: rgba(225, 29, 72, 0.3);
+  color: var(--s-accent);
+  box-shadow: 0 0 20px var(--s-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
+  transform: scale(1.08) translateY(-2px);
+}
+.s-skip:hover i {
+  transform: scale(1.1);
+}
+.s-skip:active {
+  transform: scale(0.92);
+}
+.s-skip:focus-visible {
+  outline: 2px solid var(--s-accent);
+  outline-offset: 3px;
+}
+
+/* ─── Exit Overlay ─── */
+#s-exit {
+  position: fixed; inset: 0; z-index: 9998;
+  background: var(--s-bg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ─── Splash Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .s-ring, .s-orbit-1, .s-orbit-2, .s-orbit-3,
+  .s-avatar-glow, .blob-1, .blob-2, .blob-3,
+  .s-loader-dot, .grid-bg { animation: none; }
+  .s-bar  { animation: none; }
+}
+
+/* ─── Splash Mobile ─── */
+@media (max-width: 420px) {
+  .s-orbit-wrap { width: 160px; height: 160px; }
+  .s-avatar { width: 160px; height: 160px; }
+  .s-orbit-1 { inset: -22px; }
+  .s-orbit-2 { inset: -42px; }
+  .s-orbit-3 { inset: -62px; }
+  .corner-bracket { width: 28px; height: 28px; }
+  .corner-bracket--tl { top: 12px; left: 12px; }
+  .corner-bracket--tr { top: 12px; right: 12px; }
+  .corner-bracket--bl { bottom: 12px; left: 12px; }
+  .corner-bracket--br { bottom: 12px; right: 12px; }
+  .s-skip { top: 12px; right: 12px; width: 28px; height: 28px; }
+  .s-loader-status { font-size: 0.55rem; }
+  .s-loader { top: 76%; }
+}

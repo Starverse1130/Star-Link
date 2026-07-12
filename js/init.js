@@ -7,8 +7,9 @@
   ThemeController.init();
   EmailController.init();
   WhatsAppController.init();
-  AnimationController.runEntrance();
-  TypedController.init();
+  PWAInstall.init();
+  // AnimationController.runEntrance() is called by splash exit
+  // TypedController.init() is called from gsap-entrance.js timeline
   SocialInteraction.init();
   TouchController.init();
   StarsController.init();

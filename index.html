@@ -1,19 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ===== META ===== -->
+  <!-- ===== META / SEO ===== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ayush Gupta — Full Stack Developer, UI/UX Designer. Transforming Ideas Into AI-Powered Experiences." />
-  <meta property="og:title" content="Ayush Gupta · StarLink" />
-  <meta property="og:description" content="Transforming Ideas Into AI-Powered Experiences" />
-  <meta property="og:image" content="assets/image/Aayush.webp" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Ayush Gupta · StarLink" />
-  <meta name="twitter:description" content="Transforming Ideas Into AI-Powered Experiences" />
-  <meta name="twitter:image" content="assets/image/Aayush.webp" />
+  <meta name="description" content="Ayush Gupta — Full Stack Developer & UI/UX Designer crafting AI-powered digital experiences, websites, and applications with modern tech." />
+  <meta name="author" content="Ayush Gupta" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="Ayush Gupta, Full Stack Developer, UI UX Designer, AI Developer, Web Developer, Portfolio, StarLink, Starverse, Freelancer" />
   <link rel="canonical" href="https://aayush.rf.gd" />
+
+  <!-- ===== OPEN GRAPH / FACEBOOK ===== -->
+  <meta property="og:title" content="Ayush Gupta · Full Stack Developer &amp; UI/UX Designer" />
+  <meta property="og:description" content="Transforming Ideas Into AI-Powered Experiences — Explore my portfolio, projects, and let's build something extraordinary together." />
+  <meta property="og:url" content="https://aayush.rf.gd" />
+  <meta property="og:site_name" content="Ayush Gupta · StarLink" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://aayush.rf.gd/assets/image/Ayush.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="400" />
+  <meta property="og:image:alt" content="Ayush Gupta — Full Stack Developer &amp; UI/UX Designer" />
+
+  <!-- ===== TWITTER / X ===== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ayush Gupta · Full Stack Developer &amp; UI/UX Designer" />
+  <meta name="twitter:description" content="Transforming Ideas Into AI-Powered Experiences — Explore my portfolio and projects." />
+  <meta name="twitter:image" content="https://aayush.rf.gd/assets/image/Ayush.png" />
+  <meta name="twitter:image:alt" content="Ayush Gupta — Full Stack Developer &amp; UI/UX Designer" />
+
+  <!-- ===== JSON-LD STRUCTURED DATA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ayush Gupta",
+    "alternateName": "Aayush",
+    "jobTitle": "Full Stack Developer & UI/UX Designer",
+    "url": "https://aayush.rf.gd",
+    "image": "https://aayush.rf.gd/assets/image/Ayush.png",
+    "sameAs": [
+      "https://github.com/AyushEduverse",
+      "https://linkedin.com/in/ayushgupta1103",
+      "https://x.com/ayushgupta1102",
+      "https://www.instagram.com/user_aayush_11"
+    ],
+    "description": "Transforming Ideas Into AI-Powered Experiences. Portfolio of Ayush Gupta — Full Stack Developer, UI/UX Designer, and AI enthusiast.",
+    "knowsAbout": ["Web Development", "UI/UX Design", "Artificial Intelligence", "Full Stack Development"]
+  }
+  </script>
 
   <!-- ===== PWA META ===== -->
   <meta name="theme-color" content="#0f0a0a" media="(prefers-color-scheme: dark)" />
@@ -191,6 +227,10 @@
     .mt-6 { margin-top: 24px; }
   </style>
 
+  <!-- ===== SPLASH SCREEN STYLES ===== -->
+  <link rel="preload" href="css/splash.css" as="style" fetchpriority="high" />
+  <link rel="stylesheet" href="css/splash.css" />
+
   <!-- ===== REMAINING APP STYLES ===== -->
   <link rel="stylesheet" href="css/hero.css" />
   <link rel="stylesheet" href="css/components.css" />
@@ -199,7 +239,20 @@
   <link rel="stylesheet" href="css/touch.css" />
 
   <!-- ===== PRELOAD CRITICAL RESOURCES ===== -->
-  <link rel="preload" href="assets/image/Aayush.webp" as="image" fetchpriority="high" />
+  <link rel="preload" href="assets/image/Ayush.png" as="image" fetchpriority="high" />
+  <link rel="preload" href="assets/image/Aayush.webp" as="image" />
+  <!-- Preload deferred JS (download during splash, execute after) -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js" as="script" />
+  <link rel="preload" href="js/theme.js" as="script" />
+  <link rel="preload" href="js/email.js" as="script" />
+  <link rel="preload" href="js/whatsapp.js" as="script" />
+  <link rel="preload" href="js/gsap-entrance.js" as="script" />
+  <link rel="preload" href="js/typed.js" as="script" />
+  <link rel="preload" href="js/stars.js" as="script" />
+  <link rel="preload" href="js/interactions.js" as="script" />
+  <link rel="preload" href="js/touch.js" as="script" />
+  <link rel="preload" href="js/pwa-install.js" as="script" />
+  <link rel="preload" href="js/init.js" as="script" />
 
   <!-- ===== REMIX ICONS ===== -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
@@ -209,6 +262,48 @@
 
 </head>
 <body>
+  <!-- ══ SPLASH SCREEN ══ -->
+  <div class="grid-bg" aria-hidden="true"></div>
+  <canvas id="c" aria-hidden="true"></canvas>
+  <div class="blob blob-1" aria-hidden="true"></div>
+  <div class="blob blob-2" aria-hidden="true"></div>
+  <div class="blob blob-3" aria-hidden="true"></div>
+  <div class="scanline" aria-hidden="true"></div>
+
+  <div class="corner-bracket corner-bracket--tl" aria-hidden="true"></div>
+  <div class="corner-bracket corner-bracket--tr" aria-hidden="true"></div>
+  <div class="corner-bracket corner-bracket--bl" aria-hidden="true"></div>
+  <div class="corner-bracket corner-bracket--br" aria-hidden="true"></div>
+
+  <div id="s-exit" aria-hidden="true"></div>
+
+  <button class="s-skip" id="skipBtn" aria-label="Skip">
+    <i class="ri-skip-forward-line"></i>
+  </button>
+
+  <div id="splash" role="status" aria-label="Loading">
+    <div class="s-orbit-wrap" id="orbitWrap">
+      <div class="s-orbit-3"></div>
+      <div class="s-orbit-2"></div>
+      <div class="s-orbit-1"></div>
+      <div class="s-avatar-glow"></div>
+      <div class="s-ring"></div>
+      <img class="s-avatar" src="assets/image/Ayush.png" alt="Ayush Gupta"
+           onerror="this.style.background='#E11D48'; this.style.borderRadius='50%'">
+    </div>
+  </div>
+
+  <div class="s-loader" id="loader">
+    <div class="s-loader-status" id="status">
+      <span class="s-loader-dot"></span>
+      <span id="statusText">Initializing</span>
+      <span class="s-loader-pct" id="pctDisplay">0%</span>
+    </div>
+    <div class="s-track">
+      <div class="s-bar" id="bar"></div>
+    </div>
+  </div>
+
   <!-- Skip-to-content link for keyboard users -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -279,7 +374,7 @@
     <!-- ========== SOCIAL LINKS SECTION ========== -->
     <section class="social-section" aria-label="Social links and contact">
 
-      <p class="social-section-title" id="social-title">Connect With Me</p>
+      <p class="social-section-title" id="social-title" role="heading" aria-level="2">Connect With Me</p>
 
       <div class="social-icons-row" id="links-container">
 
@@ -330,7 +425,7 @@
 
         <!-- 6. Threads -->
         <a class="social-icon-btn" data-brand="threads"
-           href="https://www.threads.com/@user_aayush_11"
+           href="https://www.threads.net/@user_aayush_11"
            target="_blank" rel="noopener noreferrer"
            aria-label="Threads — @user_aayush_11">
           <span class="tooltip">Threads</span>
@@ -398,28 +493,18 @@
 
   </main>
 
-  <!-- ============================================
-       CDN SCRIPTS
-       ============================================ -->
-  <!-- GSAP -->
+  <!-- PWA Install Banner (inline markup — shown by pwa-install.js) -->
+  <div id="pwa-banner" class="pwa-banner" role="alert" aria-live="polite"></div>
+
+  <!-- PWA iOS Guide Overlay -->
+  <div id="pwa-ios-guide" class="pwa-ios-guide" role="dialog" aria-modal="true"></div>
+
+  <!-- GSAP (critical for splash animations) -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
-  <!-- Typed.js -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
-
-  <!-- ============================================
-       APP JAVASCRIPT (feature-based JS files)
-       Order matters: modules first, then init
-       ============================================ -->
-  <script src="js/theme.js"></script>
-  <script src="js/email.js"></script>
-  <script src="js/whatsapp.js"></script>
-  <script src="js/gsap-entrance.js"></script>
-  <script src="js/typed.js"></script>
-  <script src="js/stars.js"></script>
-  <script src="js/interactions.js"></script>
-  <script src="js/touch.js"></script>
-  <script src="js/init.js"></script>
+  <!-- Splash screen JS (critical for first render) -->
+  <script src="js/splash.js"></script>
+  <!-- All other JS is loaded dynamically by splash.js during/after splash -->
 
 </body>
 </html>

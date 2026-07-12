@@ -8,6 +8,7 @@ const AnimationController = {
       document.querySelectorAll('.social-icon-btn, .hire-cta, #avatar, #name, #tagline, #typed-section, #divider, #social-title, #footer').forEach(function (el) {
         if (el) el.style.opacity = '1';
       });
+      if (typeof TypedController !== 'undefined') TypedController.init();
       return;
     }
 
@@ -74,7 +75,10 @@ const AnimationController = {
       opacity: 1, scale: 1, y: 0,
       duration: 0.45,
       ease: 'back.out(1.2)'
-    }, 0.95);
+    }, 0.95)
+    .call(function(){
+      if (typeof TypedController !== 'undefined') TypedController.init();
+    }, [], 1.1);
 
     // ——— DIVIDER (1.1s → 1.6s) ———
     tl.to('#divider', {
